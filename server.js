@@ -11,14 +11,14 @@ const {
 const app = express()
 
 // These arrays represent data that would come from the database in a real application.
-const people = [
-    { id: 1, civilianName: 'Scott Summers', superName: 'Cyclops', teamAffiliation: 1 },
-    { id: 2, civilianName: 'Ororo Munroe', superName: 'Storm', teamAffiliation: 1 },
-    { id: 3, civilianName: 'Steven Rogers', superName: 'Captain America', teamAffiliation: 2 },
-    { id: 4, civilianName: 'Reed Richards', superName: 'Mister Fantastic', teamAffiliation: 3 }
+const personDb = [
+    { id: 1, civilianName: 'Scott Summers', superName: 'Cyclops', teamId: 1 },
+    { id: 2, civilianName: 'Ororo Munroe', superName: 'Storm', teamId: 1 },
+    { id: 3, civilianName: 'Steven Rogers', superName: 'Captain America', teamId: 2 },
+    { id: 4, civilianName: 'Reed Richards', superName: 'Mister Fantastic', teamId: 3 }
 ]
 
-const teams = [
+const teamDb = [
     { id: 1, name: 'X-Men' },
     { id: 2, name: 'Avengers' },
     { id: 3, name: 'Fantastic Four' }
@@ -31,10 +31,10 @@ const PersonType = new GraphQLObjectType({
         id: { type: GraphQLNonNull(GraphQLInt) },
         civilianName: { type: GraphQLString },
         superName: { type: GraphQLNonNull(GraphQLString) },
-        teamAffiliation: {
+        team: {
             type: TeamType,
             resolve: (person) => {
-                return teams.find(t => t.id === person.teamAffiliation)
+                return teamDb.find(t => t.id === person.teamId)
             }
         }
     })
@@ -59,17 +59,17 @@ const RootQueryType = new GraphQLObjectType({
             args: {
                 id: { type: GraphQLInt }
             },
-            resolve: (parent, args) => people.find(p => p.id === args.id)
+            resolve: (parent, args) => personDb.find(p => p.id === args.id)
         },
         people: {
             type: new GraphQLList(PersonType),
             description: 'A list of all people.',
-            resolve: () => people
+            resolve: () => personDb
         },
         teams: {
             type: new GraphQLList(TeamType),
             description: 'A list of all teams.',
-            resolve: () => teams
+            resolve: () => teamDb
         }
     })
 })
