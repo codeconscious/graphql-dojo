@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "graphql-dojo",
+  "version": "1.0.0",
+  "description": "Testing out GraphQL",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeconscious/graphql-dojo.git"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "CodeConscio.us",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeconscious/graphql-dojo/issues"
+  },
+  "homepage": "https://github.com/codeconscious/graphql-dojo#readme"
+}
