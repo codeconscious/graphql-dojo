@@ -72,4 +72,4 @@ app.use('/graphql', expressGraphQL({
 }))
 
 const portNo = 5000;
-app.listen(portNo, () => console.log(`The server is running on port ${portNo}.`));
+app.listen(portNo, () => console.log(`The server is running at http://localhost:${portNo}/graphql.`));
